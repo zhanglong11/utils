@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href="#/page1">page1</a></li>
+    <li><a href="#/page2">page2</a></li>
+</ul>
+<div id="route-view"></div>
+<script>
+    window.addEventListener('DOMContentLoaded',load)
+    window.addEventListener('hashchange',hashChange)
+    let routeView=null;
+    function load(){
+        routeView = document.getElementById('route-view')
+        hashChange()
+    }
+    function hashChange(){
+        console.log(location.hash)
+        switch (location.hash){
+            case '#/page1':
+                console.log(111)
+                routeView.innerHTML ='page1'
+                return
+            case '#/page2':
+                console.log(222)
+                routeView.innerHTML ='page2'
+                return
+            default:
+                routeView.innerHTML ='page1'
+                break
+        }
+    }
+</script>
+</body>
+</html>

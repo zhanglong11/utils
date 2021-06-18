@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link
+      rel="stylesheet"
+      href="https://s3.cn-north-1.amazonaws.com.cn/api-release.modeloapp.com/prod/modeloapiui-2.2-lts.css"
+      type="text/css"
+    />
+    <script src="https://s3.cn-north-1.amazonaws.com.cn/api-release.modeloapp.com/prod/modeloapi-2.8-lts.js"></script>
+    <script src="https://s3.cn-north-1.amazonaws.com.cn/api-release.modeloapp.com/prod/modeloapiui-2.2-lts.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body,
+      .container {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="model" class="container" />
+    <script>
+      window.onload = () => {
+        let modelId = getQueryVariable("modelId");
+        modelId ? init(modelId) : init();
+      };
+
+      function init(modelId = "wrJyA78j") {
+        let appToken =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1LCJ1c2VybmFtZSI6ImJpbXV5dSIsImlzUGVybWFuZW50Ijp0cnVlLCJpYXQiOjE1NjA0MTE4OTAsImV4cCI6MzMwOTY0MTE4OTB9.dgURCUb7VoECsDokXOFOx8zxdjwFzSIEFGC0zjASDGw";
+        Modelo.init({
+          endpoint: "https://build-portal.modeloapp.com",
+          appToken,
+        });
+        modeloApp = new Modelo.UI.ModelViewer({
+          modelId: modelId,
+          containerId: "model",
+          locale: "zh",
+          useDefaultFavicon: true,
+        });
+      }
+
+      function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+          var pair = vars[i].split("=");
+          if (pair[0] == variable) {
+            return pair[1];
+          }
+        }
+        return false;
+      }
+    </script>
+  </body>
+</html>
